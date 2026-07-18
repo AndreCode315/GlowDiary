@@ -5,6 +5,19 @@ const supabaseUrl = 'https://zbuvhosvgrxngdhkqfts.supabase.co'
 const supabaseKey = 'sb_publishable_MW34HmHO-K-aUrpCqNiblw_qg9LysSF'
 const supabase = createClient(supabaseUrl, supabaseKey)
 
+async function verificarSesionActiva() {
+    const { data: { session } } = await supabase.auth.getSession();
+    
+    // Si la usuaria ya inició sesión antes, la mandamos directo al dashboard
+    if (session) {
+        window.location.href = 'dashboard.html';
+    }
+}
+
+// Se ejecuta inmediatamente al cargar la página index.html
+verificarSesionActiva();
+
+
 // Seleccionamos el formulario usando la clase que tienes en tu HTML
 const form = document.querySelector('.login-form');
 
