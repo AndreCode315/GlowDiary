@@ -5,7 +5,7 @@ async function verificarSesionActiva() {
     
     // Si la usuaria ya inició sesión antes, la mandamos directo al dashboard
     if (session) {
-        window.location.href = 'dashboard.html';
+        window.location.href = 'index.html';
     }
 }
 
