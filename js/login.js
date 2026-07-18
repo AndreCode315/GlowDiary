@@ -7,9 +7,6 @@ const supabaseKey = 'sb_publishable_MW34HmHO-K-aUrpCqNiblw_qg9LysSF'
 // Agregamos 'export' aquí para que puedas importar este mismo cliente en tu dashboard.js
 export const supabase = createClient(supabaseUrl, supabaseKey)
 
-// ==========================================
-// ¡AQUÍ AL INICIO! VALIDACIÓN DE SESIÓN ACTIVA
-// ==========================================
 async function verificarSesionActiva() {
     const { data: { session } } = await supabase.auth.getSession();
     
