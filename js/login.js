@@ -1,11 +1,4 @@
-import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
-
-// Coloca tus credenciales de GlowDiary que ya comprobamos que funcionan
-const supabaseUrl = 'https://zbuvhosvgrxngdhkqfts.supabase.co'
-const supabaseKey = 'sb_publishable_MW34HmHO-K-aUrpCqNiblw_qg9LysSF'
-
-// Agregamos 'export' aquí para que puedas importar este mismo cliente en tu dashboard.js
-export const supabase = createClient(supabaseUrl, supabaseKey)
+import { supabase } from './supabaseConfig.js';
 
 async function verificarSesionActiva() {
     const { data: { session } } = await supabase.auth.getSession();

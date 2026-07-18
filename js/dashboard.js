@@ -1,5 +1,5 @@
 // Importamos la configuración del cliente de Supabase (ajusta la ruta si es necesario)
-import { supabase } from './login.js'; 
+import { supabase } from './supabaseConfig.js';
 
 // Elementos del DOM a manipular
 const saludoNombre = document.querySelector('.greeting-title');
