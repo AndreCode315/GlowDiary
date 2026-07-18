@@ -1,0 +1,115 @@
+/* Variables globales de colores*/
+:root{
+    --fondoPantalla: #f3b1c5;   /* Lavanda/Rosa ultra suave */
+    --blancoTarjeta: #f6dede;   /* Blanco puro para el contenedor */
+    --rosaPrincipal: #DB7093;   /* Rosa viejo para botones y títulos */
+    --rosaSuave: #ebb5f0;       /* Rosa pastel para bordes o detalles */
+    --textoOscuro: #4A4A4A;     /* Gris ceniza para los textos principales */
+    --textoMutado: #8C8C8C;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--fondoPantalla);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: var(--textoOscuro);
+}
+
+.login-container {
+    background-color: var(--blancoTarjeta);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(219, 112, 147, 0.1); /* Sombra sutil rosa */
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+/* Título de la Aplicación */
+.login-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: var(--rosaPrincipal);
+    margin: 0 0 10px 0;
+}
+
+.login-header p {
+    font-size: 0.9rem;
+    color: var(--textoMutado);
+    margin-bottom: 30px;
+}
+
+/* Grupos de Formulario (Labels e Inputs) */
+.input-group {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: var(--textoOscuro);
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--rosaSuave);
+    border-radius: 10px;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+/* Efecto cuando la usuaria hace clic para escribir */
+.input-group input:focus {
+    border-color: var(--rosaPrincipal);
+    box-shadow: 0 0 5px rgba(219, 112, 147, 0.2);
+}
+
+/* Botón de Iniciar Sesión */
+.btn-login {
+    width: 100%;
+    padding: 14px;
+    background-color: var(--rosaPrincipal);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+/* Efecto al pasar el mouse por encima del botón */
+.btn-login:hover {
+    background-color: #C75B7E;
+}
+
+/* Footer del Login (Enlaces) */
+.login-footer {
+    margin-top: 25px;
+    font-size: 0.85rem;
+    color: var(--textoMutado);
+}
+
+.login-footer a {
+    color: var(--rosaPrincipal);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.login-footer a:hover {
+    text-decoration: underline;
+}

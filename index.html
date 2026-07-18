@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glow Diary - Iniciar Sesion 🌸</title>
+
+    <!--Llamamos al archivo externo con los estilos-->
+    <link rel="stylesheet" href="css/estilos.css">
+
+    <!-- Fuente elegante de Google Fonts para el toque estético -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="login-container">
+        <!--encabezado del login-->
+        <div class="login-header">
+            <h1>Glow Diary</h1>
+            <p>Tu espacio de calma y cuidado diario ✨</p>
+        </div>
+        <!--Formulario de entrada-->
+        <form class="login-form">
+            <div class="input-group">
+                <label for="email">Correro Electronico</label>
+                <input type="email" id="email" placeholder="ejemplo@correo.com" required>
+            </div>
+
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="pass12345" required>
+            </div>
+
+            <button type="submit" class="btn-login">Entrar a mi tocador</button>
+        </form>
+        <div class="login-footer">
+            <p>No tienes una cuenta <a href="#">Registrate aqui</a></p>
+        </div>
+    </div>
+
+    <!-- 1. Importamos primero la librería oficial de Supabase desde su servidor    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script> (CDN) -->
+
+
+
+    <!-- Importamos la librería de Supabase tal cual como en AI Automate -->
+<script type="module">
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+
+    // 1. COLOCA AQUÍ LAS CREDENCIALES DE TU PROYECTO ACTIVO DE GLOWDIARY
+    const supabaseUrl = 'https://zbuvhosvgrxngdhkqfts.supabase.co'
+    const supabaseKey = 'sb_publishable_MW34HmHO-K-aUrpCqNiblw_qg9LysSF'
+    const supabase = createClient(supabaseUrl, supabaseKey)
+
+    // Seleccionamos el formulario usando la clase que tienes en tu HTML
+    const form = document.querySelector('.login-form');
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault(); // Evita que la página se recargue
+
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        console.log("Intentando conectar con Supabase...");
+
+        // Usamos el método de Supabase para iniciar sesión con correo y contraseña
+        const { data, error } = await supabase.auth.signInWithPassword({
+            email: email,
+            password: password,
+        });
+
+        if (error) {
+            console.error("Error devuelto por Supabase:", error);
+            // Alerta naranja o mensaje en consola para ver qué está fallando
+            alert("Error de conexión: " + error.message);
+        } else {
+            console.log("¡Conexión exitosa! Datos del usuario:", data);
+            alert("¡Entrando a mi tocador! Conexión real exitosa ✨");
+            
+            // Aquí podrás redirigir al usuario cuando esté listo:
+            // window.location.href = 'dashboard.html';
+        }
+    });
+</script>
+    
+</body>
+</html>
