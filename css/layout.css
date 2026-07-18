@@ -1,13 +1,3 @@
-/* Variables globales de colores*/
-:root{
-    --fondoPantalla: #f5c2d1;   /* Lavanda/Rosa ultra suave */
-    --blancoTarjeta: #f6dede;   /* Blanco puro para el contenedor */
-    --rosaPrincipal: #f081a6;   /* Rosa viejo para botones y títulos */
-    --rosaSuave: #ebb5f0;       /* Rosa pastel para bordes o detalles */
-    --textoOscuro: #4A4A4A;     /* Gris ceniza para los textos principales */
-    --textoMutado: #8C8C8C;
-}
-
 .dashboard-layout {
     display:flex;
     margin: 0;

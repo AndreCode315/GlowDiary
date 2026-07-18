@@ -1,0 +1,13 @@
+/* Variables globales de colores*/
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Poppins:wght@300;400;500&display=swap');
+
+:root{
+    --fondoPantalla: #f3b1c5;   /* Lavanda/Rosa ultra suave */
+    --blancoTarjeta: #f6dede;   /* Blanco puro para el contenedor */
+    --rosaPrincipal: #DB7093;   /* Rosa viejo para botones y títulos */
+    --rosaSuave: #ebb5f0;       /* Rosa pastel para bordes o detalles */
+    --textoOscuro: #4A4A4A;     /* Gris ceniza para los textos principales */
+    --textoMutado: #8C8C8C;
+}
+
