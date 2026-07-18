@@ -1,0 +1,375 @@
+/* Variables globales de colores*/
+:root{
+    --fondoPantalla: #f5c2d1;   /* Lavanda/Rosa ultra suave */
+    --blancoTarjeta: #f6dede;   /* Blanco puro para el contenedor */
+    --rosaPrincipal: #f081a6;   /* Rosa viejo para botones y títulos */
+    --rosaSuave: #ebb5f0;       /* Rosa pastel para bordes o detalles */
+    --textoOscuro: #4A4A4A;     /* Gris ceniza para los textos principales */
+    --textoMutado: #8C8C8C;
+}
+
+.dashboard-layout {
+    display:flex;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: FFFFFF;
+    color: #1A1A1A;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 260px;
+    border-right: 1px solid #EAEAEA;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2rem 2rem;
+    position: fixed;
+    height: calc(100vh - 4rem);
+    background-color: var(--fondoPantalla);
+}
+
+.brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 2.5rem;
+}
+
+.logo-img {
+    width: 40px;
+    height: 40px;
+}
+
+.brand-logo h2 {
+    font-size: 1.1rem;
+    margin: 0;
+    font-weight: 700;
+    font-family: 'Playfair Display', serif;
+}
+
+.role-text {
+    font-size: 0.7rem;
+    color: #6f6d6d;
+    letter-spacing: 1px;
+    display: block;
+}
+
+.sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.85rem 1rem;
+    color: purple;
+    background: transparent;  /*Quita el fondo por defecto del botón */
+    border: none;             /* Quita el borde por defecto del botón */
+    font-family: inherit;     /* Hereda la fuente general */
+    width: 100%;              /* Ocupa todo el ancho disponible */
+    text-align: left;         /* Alinea el texto a la izquierda */
+    font-size: 0.95rem;
+    border-radius: 14px;
+    cursor: pointer;          /* Muestra la manito al pasar el mouse */
+    transition: all 0.4s ease;
+}
+
+.menu-item i {
+    width: 18px;
+    height: 18px;
+}
+
+.menu-item:hover {
+    background-color: var(--blancoTarjeta);
+}
+
+.menu-item.active {
+    background-color: #EAEAEA;
+    color: #000000;
+    font-weight: 500;
+}
+
+/* Sidebar Footer */
+.sidebar-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--blancoTarjeta);
+}
+
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.avatar-img {
+    width: 35px;
+    height: 35px;
+    background-color: #F0F0F0;
+    border-radius: 50%;
+    padding: 4px;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-name {
+    font-size: 0.9rem;
+    font-weight: 650;
+}
+
+.user-email {
+    font-size: 0.85rem;
+    color: var(--textoMutado);
+}
+
+.logout-icon-btn {
+    background: transparent;
+    border: none;
+    color: var(--rosaPrincipal);
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 8px;
+    transition: background 0.2s;
+}
+
+.logout-icon-btn:hover {
+    background-color: var(--rosaSuave);
+    color: #D97D96;
+}
+
+/* --- CONTENIDO PRINCIPAL --- */
+.main-content {
+    margin-left: 290px; /* Desplazamiento por el sidebar fijo */
+    flex-1: 1;
+    padding: 2.5rem 3rem;
+    max-width: 1000px;
+    background-color: var(--blancoTarjeta);
+}
+
+/* Cabecera Saludo */
+.welcome-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+}
+
+.welcome-badge {
+    background-color: #EAEAEA;
+    width: 55px;
+    height: 55px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.welcome-badge img {
+    width: 30px;
+    height: 30px;
+}
+
+.greeting-sub {
+    margin: 0;
+    font-size: 1.5rem;
+    color: var(--textoOscuro);
+}
+
+.greeting-title {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--rosaPrincipal);
+    font-family: 'Playfair Display', serif;
+}
+
+/* Grilla de Estadísticas */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+    margin-bottom: 3rem;
+}
+
+.stat-card {
+    border: 1.5px solid var(--fondoPantalla);
+    border-radius: 20px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--blancoTarjeta);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.01);
+}
+
+.stat-emoji {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.stat-number {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+}
+
+.stat-label {
+    font-size: 0.85rem;
+    color: #777777;
+}
+
+/* Bloques de Secciones */
+.section-block {
+    margin-bottom: 2.5rem;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.25rem;
+}
+
+.section-header h2 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.view-all {
+    font-size: 0.9rem;
+    color: #000000;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-weight: 500;
+}
+
+.inline-icon {
+    width: 14px;
+    height: 14px;
+}
+
+/* Grilla de Rutinas */
+.rutinas-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+}
+
+.rutina-item {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1.25rem 1.5rem;
+    border-radius: 18px;
+    cursor: pointer;
+    transition: transform 0.2s;
+    background-color: var(--fondoPantalla);
+}
+
+.rutina-item:hover {
+    transform: translateY(-2px);
+}
+
+.rutina-emoji {
+    font-size: 1.9rem;
+}
+
+.rutina-info h3 {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 600;
+}
+
+.rutina-info p {
+    margin: 0.2rem 0 0 0;
+    font-size: 0.85rem;
+    opacity: 0.7;
+}
+
+/* Colores Pastel de tus Cajas *
+.card-pink { background-color: #FFF0F2; color: #1A1A1A; }
+.card-purple { background-color: #F6EEFF; color: #1A1A1A; }
+.card-cyan { background-color: #E8FAFA; color: #1A1A1A; }
+.card-yellow { background-color: #FFF9E6; color: #1A1A1A; }
+.card-blue { background-color: #EDF4FE; color: #1A1A1A; }
+
+/* --- SECCIÓN NOTAS --- */
+.input-note-container {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.note-input {
+    flex: 1;
+    border: 2px solid var(--rosaPrincipal);
+    border-radius: 16px;
+    padding: 1rem 1.25rem;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s;
+    background-color: var(--rosaSuave);
+}
+
+.note-input:focus {
+    border-color: #888888;
+}
+
+.btn-add-note {
+    background-color: var(--fondoPantalla);
+    color: #FFFFFF;
+    border: none;
+    width: 52px;
+    height: 52px;
+    border-radius: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.btn-add-note:hover {
+    background-color:var(--rosaPrincipal);
+}
+
+/* Grilla de Notas */
+.notes-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+}
+
+.note-item {
+    border-radius: 18px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 110px;
+    background-color: #f081a6;
+}
+
+.note-text {
+    margin: 0 0 1rem 0;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+.note-date {
+    font-size: 0.75rem;
+    opacity: 0.5;
+} 

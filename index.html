@@ -39,49 +39,9 @@
         </div>
     </div>
 
-    <!-- 1. Importamos primero la librería oficial de Supabase desde su servidor    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script> (CDN) -->
-
-
-
     <!-- Importamos la librería de Supabase tal cual como en AI Automate -->
-<script type="module">
-    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+    <script type="module" src="login.js"></script>
 
-    // 1. COLOCA AQUÍ LAS CREDENCIALES DE TU PROYECTO ACTIVO DE GLOWDIARY
-    const supabaseUrl = 'https://zbuvhosvgrxngdhkqfts.supabase.co'
-    const supabaseKey = 'sb_publishable_MW34HmHO-K-aUrpCqNiblw_qg9LysSF'
-    const supabase = createClient(supabaseUrl, supabaseKey)
-
-    // Seleccionamos el formulario usando la clase que tienes en tu HTML
-    const form = document.querySelector('.login-form');
-
-    form.addEventListener('submit', async (e) => {
-        e.preventDefault(); // Evita que la página se recargue
-
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
-
-        console.log("Intentando conectar con Supabase...");
-
-        // Usamos el método de Supabase para iniciar sesión con correo y contraseña
-        const { data, error } = await supabase.auth.signInWithPassword({
-            email: email,
-            password: password,
-        });
-
-        if (error) {
-            console.error("Error devuelto por Supabase:", error);
-            // Alerta naranja o mensaje en consola para ver qué está fallando
-            alert("Error de conexión: " + error.message);
-        } else {
-            console.log("¡Conexión exitosa! Datos del usuario:", data);
-            alert("¡Entrando a mi tocador! Conexión real exitosa ✨");
-            
-            // Aquí podrás redirigir al usuario cuando esté listo:
-            // window.location.href = 'dashboard.html';
-        }
-    });
-</script>
     
 </body>
 </html>
