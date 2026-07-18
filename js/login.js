@@ -5,7 +5,7 @@ async function verificarSesionActiva() {
     
     // Si la usuaria ya inició sesión antes, la mandamos directo al dashboard
     if (session) {
-        window.location.href = 'index.html';
+        window.location.replace('dashboard.html');
     }
 }
 
@@ -37,7 +37,7 @@ form.addEventListener('submit', async (e) => {
         console.log("¡Conexión exitosa! Datos del usuario:", data);
         
         // Cambié el alert por un flujo directo para que la experiencia sea más rápida y fluida
-        window.location.href = 'dashboard.html';
+        window.location.replace('dashboard.html');
     }
 });
 //https://andrecode315.github.io/GlowDiary/

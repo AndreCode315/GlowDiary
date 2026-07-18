@@ -14,7 +14,7 @@ async function inicializarDashboard() {
 
     if (error || !session) {
         // Si no está logueada, patitas a la calle (al login)
-        window.location.href = 'index.html';
+        window.location.replace('index.html');
         return;
     }
 
@@ -64,7 +64,7 @@ async function cargarProductosUser(userId) {
 async function gestionarLogout() {
     const { error } = await supabase.auth.signOut();
     if (!error) {
-        window.location.href = 'index.html';
+        window.location.replace('index.html');
     } else {
         alert("Error al cerrar sesión");
     }
