@@ -165,10 +165,11 @@
 }
 
 .welcome-badge {
-    background-color: #EAEAEA;
+    background-color: var(--blancoTarjeta);
     width: 55px;
     height: 55px;
     border-radius: 16px;
+    border-color: var(--rosaPrincipal);
     display: flex;
     align-items: center;
     justify-content: center;
