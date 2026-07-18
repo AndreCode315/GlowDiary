@@ -3,8 +3,13 @@ import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js
 // Coloca tus credenciales de GlowDiary que ya comprobamos que funcionan
 const supabaseUrl = 'https://zbuvhosvgrxngdhkqfts.supabase.co'
 const supabaseKey = 'sb_publishable_MW34HmHO-K-aUrpCqNiblw_qg9LysSF'
-const supabase = createClient(supabaseUrl, supabaseKey)
 
+// Agregamos 'export' aquí para que puedas importar este mismo cliente en tu dashboard.js
+export const supabase = createClient(supabaseUrl, supabaseKey)
+
+// ==========================================
+// ¡AQUÍ AL INICIO! VALIDACIÓN DE SESIÓN ACTIVA
+// ==========================================
 async function verificarSesionActiva() {
     const { data: { session } } = await supabase.auth.getSession();
     
@@ -17,8 +22,9 @@ async function verificarSesionActiva() {
 // Se ejecuta inmediatamente al cargar la página index.html
 verificarSesionActiva();
 
-
-// Seleccionamos el formulario usando la clase que tienes en tu HTML
+// ==========================================
+// CONTROL DEL FORMULARIO DE LOGIN
+// ==========================================
 const form = document.querySelector('.login-form');
 
 form.addEventListener('submit', async (e) => {
@@ -39,8 +45,8 @@ form.addEventListener('submit', async (e) => {
         alert("Error de conexión: " + error.message);
     } else {
         console.log("¡Conexión exitosa! Datos del usuario:", data);
-        alert("¡Entrando a mi tocador! Conexión real exitosa ✨");
         
+        // Cambié el alert por un flujo directo para que la experiencia sea más rápida y fluida
         window.location.href = 'dashboard.html';
     }
 });
