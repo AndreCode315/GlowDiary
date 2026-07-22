@@ -139,4 +139,88 @@ body {
     width: 100%;
     padding: 14px 16px;
     border: 1px solid #f3d5d8;
+    border-radius: 14px;
+    background-color: #faf5f6;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    color: #333333;
+    outline: none;
+    transition: all 0.25s ease;
+}
+
+.input-group input::placeholder {
+    color: #a89a9f;
+}
+
+/* Efecto al hacer clic en un input */
+.input-group input:focus {
+    background-color: #ffffff;
+    border-color: #e88099;
+    box-shadow: 0 0 0 4px rgba(232, 128, 153, 0.18);
+}
+
+/* Wrapper para incluir el ojito dentro del input */
+.password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.btn-toggle-password {
+    position: absolute;
+    right: 14px;
+    background: none;
+    border: none;
+    color: #8c7b83;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    transition: color 0.2s ease;
+}
+
+.btn-toggle-password:hover {
+    color: #e88099;
+}
+
+/* Botón principal en tono rosa Glow */
+.btn-primary {
+    width: 100%;
+    padding: 14px;
+    margin-top: 10px;
+    background-color: #e88099;
+    color: #ffffff;
+    border: none;
+    border-radius: 14px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.25s ease, transform 0.1s ease;
+}
+
+.btn-primary:hover {
+    background-color: #d66d86;
+}
+
+.btn-primary:active {
+    transform: scale(0.98);
+}
+
+.auth-footer {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #7d6b73;
+}
+
+.auth-footer a {
+    color: #e88099;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.auth-footer a:hover {
+    text-decoration: underline;
 }
