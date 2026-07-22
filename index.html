@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,17 +13,20 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    
     <!-- Librería para renderizar iconos de Lucide -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    
 </head>
 <body>
+
+    <!-- 1. TARJETA DE LOGIN (Con ID agregado para la navegación) -->
     <div id="card-login" class="login-container">
         <!--encabezado del login-->
         <div class="login-header">
             <h1>Glow Diary</h1>
             <p>Tu espacio de calma y cuidado diario ✨</p>
         </div>
+
         <!--Formulario de entrada-->
         <form class="login-form">
             <div class="input-group">
@@ -38,16 +41,17 @@
 
             <button type="submit" class="btn-login">Entrar a mi tocador</button>
         </form>
+
         <div class="login-footer">
             <p>No tienes una cuenta <a href="#" id="link-ir-registro">Registrate aqui</a></p>
         </div>
     </div>
 
-        <!--Tarjeta de registro formulario-->
-    <div id="card-registro" class="auth-card">
+    <!-- 2. TARJETA DE REGISTRO (Oculta por defecto con style="display: none;") -->
+    <div id="card-registro" class="auth-card" style="display: none;">
         <div class="auth-header">
             <h2>Crear cuenta</h2>
-            <p class="auth-subtitle">Empieza a organizar tus rutinas hoy </p>
+            <p class="auth-subtitle">Empieza a organizar tus rutinas hoy ✨</p>
         </div>
 
         <form id="form-registro">
@@ -56,21 +60,24 @@
                 <label for="reg-nombre">Nombre completo</label>
                 <input type="text" id="reg-nombre" placeholder="Tu nombre" required>
             </div>
+
             <!--Correo electronico-->
             <div class="input-group">
                 <label for="reg-email">Correo Electronico</label>
-                <input type="text" id="reg-email" placeholder="tu@correo.com" required>
+                <input type="email" id="reg-email" placeholder="tu@correo.com" required>
             </div>
+
             <!--Contrasenia con icono para revelar-->
             <div class="input-group">
                 <label for="reg-password">Contraseña</label>
-                <div class="passwrod'wrapper">
+                <div class="password-wrapper">
                     <input type="password" id="reg-password" placeholder="Minimo 6 caracteres" minlength="6" required>
                     <button type="button" class="btn-toggle-password" id="toggle-pass-1" aria-label="Mostrar contraseña">
                         <i data-lucide="eye"></i>
                     </button>
                 </div>
             </div>
+
             <!--Confirmar contrasenia con icono-->
             <div class="input-group">
                 <label for="reg-confirm-password">Confirmar contraseña</label>
@@ -84,6 +91,7 @@
 
             <button type="submit" class="btn-primary">Crear cuenta</button>
         </form>
+
         <div class="auth-footer">
             <p>Ya tienes tu cuenta? <a href="#" id="link-ir-login">Inicia sesion aqui</a></p>
         </div>
@@ -91,7 +99,5 @@
 
     <!-- Importamos la librería de Supabase tal cual como en AI Automate -->
     <script type="module" src="./js/login.js"></script>
-
-    
 </body>
 </html>
