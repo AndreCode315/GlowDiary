@@ -306,7 +306,7 @@
 
 /* Caja cuadrada redondeada del icono de saludo */
 .welcome-badge {
-    background-color: var(--rosaSuave);
+    background-color: var(--fondoPantalla);
     color: var(--rosaPrincipal);
     width: 50px;
     height: 50px;
@@ -340,13 +340,13 @@
 }
 
 .stat-card {
-    border: 1px solid var(--card-border);
+    border: 1px solid var(--rosaPrincipal);
     border-radius: 18px;
     padding: 1.25rem 1rem;
     display: flex;
     flex-direction: column;
     align-items: center; /* Centra emojis y texto en el medio de la tarjeta */
-    background-color: var(--fondoPantalla);
+    background-color: var(--card-border);
     box-shadow: 0 2px 10px rgba(0,0,0,0.02);
 }
  
