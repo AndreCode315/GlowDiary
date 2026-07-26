@@ -10,7 +10,8 @@ body {
     color: var(--textoOscuro);
 }
 
-.login-container {
+.login-container, 
+.auth-card {
     background-color: var(--blancoTarjeta);
     padding: 40px;
     border-radius: 20px;
@@ -21,14 +22,16 @@ body {
 }
 
 /* Título de la Aplicación */
-.login-header h1 {
+.login-header h1,
+.auth-header h2 {
     font-family: 'Playfair Display', serif;
     font-size: 2.5rem;
     color: var(--rosaPrincipal);
     margin: 0 0 10px 0;
 }
 
-.login-header p {
+.login-header p,
+.auth-subtitle {
     font-size: 0.9rem;
     color: var(--textoMutado);
     margin-bottom: 30px;
@@ -67,7 +70,8 @@ body {
 }
 
 /* Botón de Iniciar Sesión */
-.btn-login {
+.btn-login,
+.btn-primary {
     width: 100%;
     padding: 14px;
     background-color: var(--rosaPrincipal);
@@ -83,24 +87,28 @@ body {
 }
 
 /* Efecto al pasar el mouse por encima del botón */
-.btn-login:hover {
+.btn-login:hover,
+.btn-primary:hover {
     background-color: #C75B7E;
 }
 
 /* Footer del Login (Enlaces) */
-.login-footer {
+.login-footer,
+.auth-footer {
     margin-top: 25px;
     font-size: 0.85rem;
     color: var(--textoMutado);
 }
 
-.login-footer a {
+.login-footer a,
+.auth-footer a {
     color: var(--rosaPrincipal);
     text-decoration: none;
     font-weight: 500;
 }
 
-.login-footer a:hover {
+.login-footer a:hover,
+.auth-footer a:hover {
     text-decoration: underline;
 }
 
