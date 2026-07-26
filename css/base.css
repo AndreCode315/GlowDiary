@@ -10,7 +10,7 @@
     --textoMutado: #8C8C8C;     /* Textos secundarios / fechas */
     --card-border: #f4e6e9;     /* Borde sutil para tarjetas y topbar */
 }
-
+ 
 *, *::before, *::after {
     box-sizing: border-box;
 }
