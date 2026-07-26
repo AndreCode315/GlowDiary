@@ -8,6 +8,16 @@
     min-height: 100vh;
 }
 
+.layout-container {
+    background-color: var(--blancoTarjeta);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(219, 112, 147, 0.1); /* Sombra sutil rosa */
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
 .sidebar {
     width: 260px;
     border-right: 1px solid #EAEAEA;
