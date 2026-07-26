@@ -2,33 +2,68 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>GlowDiary - Dashboard</title>
-    <link rel="stylesheet" href="css/dashboard.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GlowDiary - Mi Tocador</title>
+
+    <!-- Estilos generales -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+
+    <!-- Fuentes e iconos -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-<body>
+<body class="dashboard-layout">
 
-    <div class="dashboard-layout">
-        <!-- Sidebar Menú -->
-        <aside class="sidebar">
-            <h2 class="logo">GlowDiary ✨</h2>
+    <!-- Barra lateral -->
+    <aside class="sidebar">
+        <div class="sidebar-top">
+            <div class="brand-logo">
+                <i data-lucide="flower"></i>
+                <div>
+                    <h2>Mi Rutina</h2>
+                    <span class="role-text">Beauty Manager</span>
+                </div>
+            </div>
+            
             <nav class="sidebar-menu">
-                <!-- Usamos data-view para saber qué archivo HTML cargar -->
-                <button class="nav-btn active" data-view="resumen">Dashboard</button>
-                <button class="nav-btn" data-view="rutinas">Rutinas</button>
-                <button class="nav-btn" data-view="notas">Notas</button>
-                <button class="nav-btn" data-view="perfil">Perfil</button>
+                <!-- Atributos data-view agregados para la navegación modular -->
+                <button class="menu-item activate" type="button" data-view="dash">
+                    <i data-lucide="layout-dashboard"></i>Dashboard
+                </button>
+                <button class="menu-item" type="button" data-view="rutinas">
+                    <i data-lucide="sparkles"></i> Rutinas
+                </button>
+                <button class="menu-item" type="button" data-view="perfil">
+                    <i data-lucide="user"></i> Perfil
+                </button>
+                <button class="menu-item" type="button" data-view="notas">
+                    <i data-lucide="file-text"></i> Notas
+                </button>
             </nav>
-        </aside>
+        </div>
 
-        <!-- Contenedor dinámico principal -->
-        <main id="main-content" class="content-area">
-            <!-- Aquí JS inyectará el contenido de las vistas -->
-        </main>
-    </div>
+        <div class="sidebar-footer">
+            <div class="user-profile">
+                <i data-lucide="flower"></i>
+                <div class="user-info">
+                    <span class="user-name">NombreUsuaria</span>
+                    <span class="user-email">email@gmail.com</span>
+                </div>
+            </div>
+            <button id="btn-logout" class="logout-icon-btn">
+                <i data-lucide="log-out"></i>
+            </button>
+        </div>
+    </aside>
 
-    <script src="js/dash.js"></script>
+    <!-- Contenedor Principal (Aquí JS inyectará las vistas desde /views/) -->
+    <main class="main-content" id="main-content">
+        <!-- El contenido se carga dinámicamente -->
+    </main>
+
+    <script type="module" src="./js/dash.js"></script>
 </body>
 </html>
-
-
