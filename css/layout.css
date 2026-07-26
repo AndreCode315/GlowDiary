@@ -18,6 +18,20 @@
     text-align: center;
 }
 
+/* Título de la Aplicación */
+.layout-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: var(--rosaPrincipal);
+    margin: 0 0 10px 0;
+}
+
+.layout-header p {
+    font-size: 0.9rem;
+    color: var(--textoMutado);
+    margin-bottom: 30px;
+}
+
 .sidebar {
     width: 260px;
     border-right: 1px solid #EAEAEA;
