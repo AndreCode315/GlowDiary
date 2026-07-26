@@ -11,15 +11,17 @@ body {
     color: var(--textoOscuro);
 }
 
-.login-container, 
+.login-container,
 .auth-card {
     background-color: var(--blancoTarjeta);
     padding: 40px;
     border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(219, 112, 147, 0.1); /* Sombra sutil rosa */
+    box-shadow: 0 10px 25px rgba(219, 112, 147, 0.1);
     width: 100%;
     max-width: 400px;
     text-align: center;
+    box-sizing: border-box;
+    margin: auto; /* Centra la tarjeta perfectamente */
 }
 
 /* Título de la Aplicación */
