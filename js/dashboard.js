@@ -1,40 +1,34 @@
-// Importamos la configuración del cliente de Supabase
 import { supabase } from './supabaseConfig.js';
 
-// Elementos del DOM a manipular (Autenticación y Supabase)
 const saludoNombre = document.querySelector('.greeting-title');
 const userEmailText = document.querySelector('.user-email');
 const btnLogout = document.getElementById('btn-logout');
-const contadorProductos = document.querySelectorAll('.stat-number')[1]; // Segunda tarjeta de estadísticas (🧴 Productos)
+const contadorProductos = document.querySelectorAll('.stat-number')[1];
 
-// Elementos del DOM a manipular (Interfaz y Navegación)
 const btnToggleMenu = document.getElementById('btn-toggle-menu');
+const btnCloseSidebar = document.getElementById('btn-close-sidebar');
 const sidebar = document.getElementById('sidebar-menu');
+const overlay = document.getElementById('sidebar-overlay');
 const menuButtons = document.querySelectorAll('.sidebar-menu .menu-item');
 const secciones = document.querySelectorAll('.seccion-pantalla');
+const linkVerTodas = document.getElementById('link-ver-todas');
 
-// 1. PROTEGER LA RUTA Y CARGAR DATOS
 async function inicializarDashboard() {
-    // Verificamos si hay una sesión activa en el navegador
     const { data: { session }, error } = await supabase.auth.getSession();
 
     if (error || !session) {
-        // Si no está logueada, al login
         window.location.replace('index.html');
         return;
     }
 
-    // Si está logueada, extraemos su ID único
     const userId = session.user.id;
     if (userEmailText) {
-        userEmailText.textContent = session.user.email; // Correo en la barra lateral
+        userEmailText.textContent = session.user.email;
     }
 
-    // Cargar datos de la base de datos
     await cargarDatosPerfil(userId);
     await cargarProductosUser(userId);
 
-    // Inicializar listeners de UI e íconos
     configurarNavegacionUI();
     
     if (window.lucide) {
@@ -42,7 +36,6 @@ async function inicializarDashboard() {
     }
 }
 
-// 2. TRAER INFORMACIÓN DEL PERFIL REAL
 async function cargarDatosPerfil(userId) {
     const { data: perfil, error } = await supabase
         .from('perfiles')
@@ -57,7 +50,6 @@ async function cargarDatosPerfil(userId) {
     }
 }
 
-// 3. TRAER Y CONTAR LOS PRODUCTOS REALES
 async function cargarProductosUser(userId) {
     const { data: listaProductos, error } = await supabase
         .from('productos')
@@ -68,11 +60,9 @@ async function cargarProductosUser(userId) {
         if (contadorProductos) {
             contadorProductos.textContent = listaProductos.length;
         }
-        console.log("Productos cargados de forma dinámica:", listaProductos);
     }
 }
 
-// 4. FUNCIÓN PARA CERRAR SESIÓN
 async function gestionarLogout() {
     const { error } = await supabase.auth.signOut();
     if (!error) {
@@ -82,43 +72,62 @@ async function gestionarLogout() {
     }
 }
 
-// 5. NAVEGACIÓN DE PANTALLAS Y MENÚ LATERAL (UI)
-function configurarNavegacionUI() {
-    // Abrir / Cerrar el menú responsive
-    if (btnToggleMenu && sidebar) {
-        btnToggleMenu.addEventListener('click', () => {
-            sidebar.classList.toggle('open');
-        });
+function abrirMenu() {
+    if (sidebar && overlay) {
+        sidebar.classList.add('open');
+        overlay.classList.add('active');
     }
+}
 
-    // Cambiar de vistas con los botones del menú lateral
+function cerrarMenu() {
+    if (sidebar && overlay) {
+        sidebar.classList.remove('open');
+        overlay.classList.remove('active');
+    }
+}
+
+function cambiarSeccion(targetId) {
+    menuButtons.forEach(btn => {
+        if (btn.getAttribute('data-target') === targetId) {
+            btn.classList.add('activate');
+        } else {
+            btn.classList.remove('activate');
+        }
+    });
+
+    secciones.forEach(sec => {
+        if (sec.id === targetId) {
+            sec.classList.add('active');
+        } else {
+            sec.classList.remove('active');
+        }
+    });
+
+    cerrarMenu();
+}
+
+function configurarNavegacionUI() {
+    if (btnToggleMenu) btnToggleMenu.addEventListener('click', abrirMenu);
+    if (btnCloseSidebar) btnCloseSidebar.addEventListener('click', cerrarMenu);
+    if (overlay) overlay.addEventListener('click', cerrarMenu);
+
     menuButtons.forEach(button => {
         button.addEventListener('click', () => {
             const targetId = button.getAttribute('data-target');
-            if (!targetId) return;
-
-            // Quitar clase activa de botones y ocultar las pantallas
-            menuButtons.forEach(btn => btn.classList.remove('activate'));
-            secciones.forEach(sec => sec.classList.remove('active'));
-
-            // Activar botón presionado y mostrar la sección correspondiente
-            button.classList.add('activate');
-            
-            const targetSection = document.getElementById(targetId);
-            if (targetSection) {
-                targetSection.classList.add('active');
-            }
-
-            // En móviles, cerrar la barra tras hacer clic en un enlace
-            if (sidebar) sidebar.classList.remove('open');
+            if (targetId) cambiarSeccion(targetId);
         });
     });
+
+    if (linkVerTodas) {
+        linkVerTodas.addEventListener('click', (e) => {
+            e.preventDefault();
+            cambiarSeccion('sec-rutinas');
+        });
+    }
 }
 
-// Escuchador de evento de Logout
 if (btnLogout) {
     btnLogout.addEventListener('click', gestionarLogout);
 }
 
-// Arrancar la app al cargar el archivo
 inicializarDashboard();

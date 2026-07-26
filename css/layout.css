@@ -1,121 +1,230 @@
+/* ==========================================
+   1. ESTRUCTURA Y RESET DEL DASHBOARD
+   ========================================== */
+
+/* Define las dimensiones base para el cuerpo de la aplicación */
 .dashboard-layout {
-    display:flex;
     margin: 0;
     padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: FFFFFF;
-    color: #1A1A1A;
-    min-height: 100vh;
+    min-height: 100vh; /* Garantiza que ocupe como mínimo toda la altura de la pantalla */
 }
 
-.layout-container {
-    background-color: var(--blancoTarjeta);
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(219, 112, 147, 0.1); /* Sombra sutil rosa */
-    width: 100%;
-    max-width: 400px;
-    text-align: center;
+/* ==========================================
+   2. TOPBAR SUPERIOR (Barra de navegación fija)
+   ========================================== */
+
+.topbar {
+    position: fixed;        /* Queda fija en la pantalla incluso al hacer scroll */
+    top: 0;
+    left: 0;
+    width: 100%;           /* Ocupa todo el ancho horizontal */
+    height: 60px;          /* Altura fija de la barra */
+    background-color: #ffffff;
+    border-bottom: 1px solid var(--card-border); /* Línea divisoria inferior sutil */
+    
+    /* Flexbox para alinear los 3 elementos: [Botón Menú] [Título/Logo] [Icono Usuario] */
+    display: flex;
+    align-items: center;            /* Centra verticalmente los elementos */
+    justify-content: space-between; /* Distribuye espacio uniforme entre los elementos */
+    padding: 0 20px;               /* Margen interno a los lados */
+    z-index: 100;                  /* Mantiene la barra por encima del contenido común */
 }
 
-/* Título de la Aplicación */
-.layout-header h2 {
+/* Botón de hamburguesa para abrir el sidebar */
+.btn-menu {
+    background: transparent; /* Elimina el fondo por defecto del botón */
+    border: none;            /* Elimina el borde del botón */
+    cursor: pointer;         /* Cambia el puntero a la "manito" interactiva */
+    color: var(--textoOscuro);
+    display: flex;
+    align-items: center;
+    padding: 6px;
+    border-radius: 8px;      /* Redondea las esquinas del área de clic */
+    transition: background-color 0.2s; /* Animación suave al pasar el mouse */
+}
+
+/* Efecto hover cuando el usuario pasa el cursor sobre el botón menú */
+.btn-menu:hover {
+    background-color: var(--rosaSuave);
+}
+
+/* Contenedor del título central dentro de la topbar */
+.brand-title {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Espacio de 8px entre la flor y el texto "Dashboard" */
     font-family: 'Playfair Display', serif;
-    font-size: 2.5rem;
-    color: var(--rosaPrincipal);
-    margin: 0 0 10px 0;
 }
 
-.layout-header p {
-    font-size: 0.9rem;
-    color: var(--textoMutado);
-    margin-bottom: 30px;
+.brand-title h2 {
+    font-size: 1.1rem;
+    margin: 0;
+    color: var(--textoOscuro);
 }
+
+/* Color para el icono de la flor */
+.brand-icon {
+    color: var(--rosaPrincipal);
+}
+
+/* Círculo con icono de usuario/avatar en el extremo derecho de la topbar */
+.topbar-user-icon {
+    background-color: var(--rosaSuave);
+    color: var(--rosaPrincipal);
+    width: 34px;
+    height: 34px;
+    border-radius: 50%; /* '50%' transforma un contenedor cuadrado en un círculo perfecto */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centra el icono en el medio del círculo */
+}
+
+/* ==========================================
+   3. OVERLAY (Capa oscura de fondo al abrir el menú)
+   ========================================== */
+
+.sidebar-overlay {
+    position: fixed; /* Se posiciona sobre toda la ventana gráfica */
+    top: 0;
+    left: 0;
+    width: 100vw;    /* 100% del ancho de la pantalla (Viewport Width) */
+    height: 100vh;   /* 100% de la altura de la pantalla (Viewport Height) */
+    background-color: rgba(0, 0, 0, 0.35); /* Fondo negro semitransparente (35% opacidad) */
+    
+    /* Estado inicial: Oculto para que no bloquee clics cuando el menú está cerrado */
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease; /* Transición suave de fundido de 0.3 segundos */
+    z-index: 150;              /* Por encima de la topbar pero por debajo del sidebar */
+}
+
+/* Clase que agrega JavaScript cuando se abre el sidebar */
+.sidebar-overlay.active {
+    opacity: 1;
+    visibility: visible; /* Hace visible la capa oscura */
+}
+
+/* ==========================================
+   4. SIDEBAR (Barra lateral desplegable)
+   ========================================== */
 
 .sidebar {
-    width: 260px;
-    border-right: 1px solid #EAEAEA;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 2rem 2rem;
     position: fixed;
-    height: calc(100vh - 4rem);
-    background-color: var(--fondoPantalla);
+    top: 0;
+    left: -280px;  /* Oculta la barra fuera del borde izquierdo de la pantalla */
+    width: 260px;
+    height: 100vh;
+    background-color: #ffffff;
+    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.05); /* Sombra lateral suave */
+    
+    /* Organiza el contenido verticalmente en 3 bloques: Header, Menú y Footer */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Empuja el Header arriba y el Footer abajo */
+    padding: 1.5rem 1.25rem;
+    transition: left 0.3s ease;     /* Transición suave para el efecto de deslizado */
+    z-index: 200;                   /* Mantiene el panel en la capa superior absoluta */
+}
+
+/* Clase activada por JavaScript al hacer clic en el botón menú */
+.sidebar.open {
+    left: 0 !important; /* Desplaza el panel hacia adentro haciéndolo visible */
+}
+
+/* Encabezado del sidebar (Logo + Botón cerrar) */
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
 }
 
 .brand-logo {
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    margin-bottom: 2.5rem;
 }
 
-.logo-img {
-    width: 40px;
-    height: 40px;
+/* Círculo oscuro con el icono de la marca */
+.logo-circle {
+    background-color: #000000;
+    color: #ffffff;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .brand-logo h2 {
-    font-size: 1.1rem;
+    font-size: 1rem;
     margin: 0;
-    font-weight: 700;
     font-family: 'Playfair Display', serif;
 }
 
+/* Texto del subtítulo/rol en mayúsculas */
 .role-text {
-    font-size: 0.7rem;
-    color: #6f6d6d;
-    letter-spacing: 1px;
+    font-size: 0.65rem;
+    color: var(--textoMutado);
+    letter-spacing: 0.5px; /* Separación entre letras para un acabado elegante */
     display: block;
 }
 
+/* Botón "X" para cerrar el sidebar */
+.btn-close-sidebar {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--textoMutado);
+    display: flex;
+    align-items: center;
+    padding: 4px;
+}
+
+/* Lista de botones del menú principal */
 .sidebar-menu {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.5rem;   /* Separación vertical de 8px entre cada botón */
+    flex-grow: 1;  /* Ocupa todo el espacio sobrante para empujar el footer al fondo */
 }
 
+/* Estilo individual de las opciones del menú */
 .menu-item {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    padding: 0.85rem 1rem;
-    color: purple;
-    background: transparent;  /*Quita el fondo por defecto del botón */
-    border: none;             /* Quita el borde por defecto del botón */
-    font-family: inherit;     /* Hereda la fuente general */
-    width: 100%;              /* Ocupa todo el ancho disponible */
-    text-align: left;         /* Alinea el texto a la izquierda */
-    font-size: 0.95rem;
-    border-radius: 14px;
-    cursor: pointer;          /* Muestra la manito al pasar el mouse */
-    transition: all 0.4s ease;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    color: var(--textoOscuro);
+    background: transparent;
+    border: none;
+    font-family: inherit; /* Hereda la tipografía Poppins del cuerpo */
+    width: 100%;
+    text-align: left;
+    font-size: 0.9rem;
+    border-radius: 12px;   /* Esquinas redondeadas estilo píldora */
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
-.menu-item i {
-    width: 18px;
-    height: 18px;
-}
-
-.menu-item:hover {
-    background-color: var(--blancoTarjeta);
-}
-
+/* Estilo visual al pasar el ratón O cuando la sección está activa */
+.menu-item:hover, 
+.menu-item.activate,
 .menu-item.active {
-    background-color: #EAEAEA;
-    color: #000000;
+    background-color: var(--rosaSuave);
+    color: var(--rosaPrincipal);
     font-weight: 500;
 }
 
-/* Sidebar Footer */
+/* Bloque inferior del sidebar (Perfil de usuario + Salir) */
 .sidebar-footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--blancoTarjeta);
+    padding-top: 1rem;
+    border-top: 1px solid var(--card-border); /* Línea divisoria horizontal arriba del footer */
 }
-
 
 .user-profile {
     display: flex;
@@ -123,12 +232,15 @@
     gap: 0.75rem;
 }
 
-.avatar-img {
-    width: 35px;
-    height: 35px;
-    background-color: #F0F0F0;
+.user-avatar {
+    background-color: var(--rosaSuave);
+    color: var(--rosaPrincipal);
+    width: 34px;
+    height: 34px;
     border-radius: 50%;
-    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .user-info {
@@ -137,113 +249,123 @@
 }
 
 .user-name {
-    font-size: 0.9rem;
-    font-weight: 650;
+    font-size: 0.85rem;
+    font-weight: 600;
 }
 
 .user-email {
-    font-size: 0.85rem;
+    font-size: 0.7rem;
     color: var(--textoMutado);
 }
 
+/* Botón del icono de cerrar sesión */
 .logout-icon-btn {
     background: transparent;
     border: none;
-    color: var(--rosaPrincipal);
+    color: var(--textoMutado);
     cursor: pointer;
     padding: 0.5rem;
     border-radius: 8px;
-    transition: background 0.2s;
+    transition: color 0.2s;
 }
 
 .logout-icon-btn:hover {
-    background-color: var(--rosaSuave);
-    color: #D97D96;
+    color: var(--rosaPrincipal);
 }
 
-/* --- CONTENIDO PRINCIPAL --- */
+/* ==========================================
+   5. CONTENIDO PRINCIPAL Y PANTALLAS (SPA)
+   ========================================== */
+
 .main-content {
-    margin-left: 290px; /* Desplazamiento por el sidebar fijo */
-    flex-1: 1;
-    padding: 2.5rem 3rem;
-    max-width: 1000px;
-    background-color: var(--blancoTarjeta);
+    margin-top: 60px; /* Compensación equivalente a los 60px de altura de la topbar */
+    padding: 2.5rem 1.5rem;
+    max-width: 1050px;  /* Ancho máximo para evitar que el contenido se deforme en monitores grandes */
+    margin-left: auto;  /* 'auto' en márgenes horizontales centra el contenedor automáticamente */
+    margin-right: auto;
 }
 
-/* Cabecera Saludo */
+/* Mecanismo para Single Page Application (SPA): oculta secciones por defecto */
+.seccion-pantalla {
+    display: none;
+}
+
+/* Muestra únicamente la sección marcada con la clase '.active' */
+.seccion-pantalla.active {
+    display: block;
+}
+
+/* --- ENCABEZADO DE BIENVENIDA --- */
 .welcome-header {
     display: flex;
     align-items: center;
     gap: 1rem;
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
 }
 
+/* Caja cuadrada redondeada del icono de saludo */
 .welcome-badge {
-    background-color: var(--blancoTarjeta);
-    width: 55px;
-    height: 55px;
+    background-color: var(--rosaSuave);
+    color: var(--rosaPrincipal);
+    width: 50px;
+    height: 50px;
     border-radius: 16px;
-    border-color: var(--rosaPrincipal);
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.welcome-badge img {
-    width: 30px;
-    height: 30px;
-}
-
 .greeting-sub {
     margin: 0;
-    font-size: 1.5rem;
-    color: var(--textoOscuro);
+    font-size: 0.95rem;
+    color: var(--textoMutado);
 }
 
 .greeting-title {
     margin: 0;
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: 700;
     color: var(--rosaPrincipal);
     font-family: 'Playfair Display', serif;
 }
 
-/* Grilla de Estadísticas */
+/* --- GRILLA DE ESTADÍSTICAS --- */
 .stats-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    /* CSS Grid Responsivo: ajusta automáticamente el número de columnas (mínimo 150px por tarjeta) */
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 1.25rem;
-    margin-bottom: 3rem;
+    margin-bottom: 2.5rem;
 }
 
 .stat-card {
-    border: 1.5px solid var(--fondoPantalla);
-    border-radius: 20px;
-    padding: 1.5rem;
+    border: 1px solid var(--card-border);
+    border-radius: 18px;
+    padding: 1.25rem 1rem;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    background-color: var(--blancoTarjeta);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.01);
+    align-items: center; /* Centra emojis y texto en el medio de la tarjeta */
+    background-color: #ffffff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.02);
 }
 
 .stat-emoji {
     font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-}
-
-.stat-number {
-    font-size: 1.8rem;
-    font-weight: 700;
     margin-bottom: 0.25rem;
 }
 
-.stat-label {
-    font-size: 0.85rem;
-    color: #777777;
+.stat-number {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--textoOscuro);
 }
 
-/* Bloques de Secciones */
+.stat-label {
+    font-size: 0.8rem;
+    color: var(--textoMutado);
+}
+
+/* --- BLOQUE Y GRILLA DE RUTINAS --- */
 .section-block {
     margin-bottom: 2.5rem;
 }
@@ -256,14 +378,14 @@
 }
 
 .section-header h2 {
-    font-size: 1.35rem;
-    font-weight: 700;
+    font-size: 1.3rem;
+    font-family: 'Playfair Display', serif;
     margin: 0;
 }
 
 .view-all {
-    font-size: 0.9rem;
-    color: #000000;
+    font-size: 0.85rem;
+    color: var(--textoOscuro);
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -271,134 +393,125 @@
     font-weight: 500;
 }
 
-.inline-icon {
-    width: 14px;
-    height: 14px;
-}
-
-/* Grilla de Rutinas */
 .rutinas-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    /* Grid dinámico con un tamaño mínimo por tarjeta de 220px */
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 1.25rem;
 }
 
 .rutina-item {
     display: flex;
     align-items: center;
-    gap: 1.25rem;
-    padding: 1.25rem 1.5rem;
-    border-radius: 18px;
+    gap: 1rem;
+    padding: 1.1rem 1.25rem;
+    border-radius: 16px;
     cursor: pointer;
-    transition: transform 0.2s;
-    background-color: var(--fondoPantalla);
+    transition: transform 0.2s, box-shadow 0.2s; /* Habilita animación de elevación */
+    border: 1px solid transparent;
 }
 
+/* Efecto hover: eleva ligeramente la tarjeta y le da una sombra flotante */
 .rutina-item:hover {
     transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
 }
 
 .rutina-emoji {
-    font-size: 1.9rem;
+    font-size: 1.75rem;
 }
 
 .rutina-info h3 {
     margin: 0;
-    font-size: 1.05rem;
+    font-size: 0.95rem;
     font-weight: 600;
 }
 
 .rutina-info p {
     margin: 0.2rem 0 0 0;
-    font-size: 0.85rem;
-    opacity: 0.7;
+    font-size: 0.8rem;
+    color: var(--textoMutado);
 }
 
-/* Colores Pastel de tus Cajas *
-.card-pink { background-color: #FFF0F2; color: #1A1A1A; }
-.card-purple { background-color: #F6EEFF; color: #1A1A1A; }
-.card-cyan { background-color: #E8FAFA; color: #1A1A1A; }
-.card-yellow { background-color: #FFF9E6; color: #1A1A1A; }
-.card-blue { background-color: #EDF4FE; color: #1A1A1A; }
+/* VARIACIONES DE COLORES PASTEL PARA TARJETAS */
+.card-pink   { background-color: #fff0f3; border-color: #ffe3e8; }
+.card-purple { background-color: #f7f0fa; border-color: #f0e1f7; }
+.card-cyan   { background-color: #eefbfb; border-color: #d8f5f5; }
+.card-yellow { background-color: #fffdf0; border-color: #fef8cf; }
+.card-blue   { background-color: #edf4fe; border-color: #dbe7fb; }
 
-/* --- SECCIÓN NOTAS --- */
+/* ==========================================
+   6. SECCIÓN NOTAS Y ELEMENTOS FORMULARIO
+   ========================================== */
+
+/* Contenedor del campo de entrada y el botón de agregar */
 .input-note-container {
     display: flex;
     gap: 0.75rem;
     margin-bottom: 1.5rem;
 }
 
+/* Campo para escribir notas */
 .note-input {
-    flex: 1;
-    border: 2px solid var(--rosaPrincipal);
-    border-radius: 16px;
-    padding: 1rem 1.25rem;
-    font-size: 0.95rem;
-    outline: none;
+    flex: 1; /* Estira el campo para ocupar todo el espacio libre horizontal */
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    padding: 0.85rem 1.25rem;
+    font-size: 0.9rem;
+    outline: none; /* Elimina el borde azul por defecto que colocan los navegadores */
     transition: border-color 0.2s;
-    background-color: var(--rosaSuave);
+    background-color: #ffffff;
 }
 
+/* Resalta el borde al hacer clic dentro del input */
 .note-input:focus {
-    border-color: #888888;
+    border-color: var(--rosaPrincipal);
 }
 
+/* Botón cuadrado para añadir notas con el icono '+' */
 .btn-add-note {
-    background-color: var(--fondoPantalla);
-    color: #FFFFFF;
+    background-color: var(--rosaPrincipal);
+    color: #ffffff;
     border: none;
-    width: 52px;
-    height: 52px;
-    border-radius: 16px;
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background 0.2s;
+    transition: opacity 0.2s;
 }
 
 .btn-add-note:hover {
-    background-color:var(--rosaPrincipal);
+    opacity: 0.9;
 }
 
-/* Grilla de Notas */
+/* Grilla de notas en formato de cuadrícula */
 .notes-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 1.25rem;
 }
 
 .note-item {
-    border-radius: 18px;
-    padding: 1.5rem;
+    border-radius: 16px;
+    padding: 1.25rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    min-height: 110px;
-    background-color: #f081a6;
+    justify-content: space-between; /* Mantiene el texto arriba y la fecha abajo */
+    min-height: 120px;
+    background-color: #ffffff;
+    border: 1px solid var(--card-border);
 }
 
 .note-text {
     margin: 0 0 1rem 0;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     line-height: 1.4;
 }
 
 .note-date {
     font-size: 0.75rem;
-    opacity: 0.5;
-} 
-
-/* Control de visibilidad de secciones */
-.seccion-pantalla {
-    display: none;
-}
-
-.seccion-pantalla.active {
-    display: block;
-}
-
-/* Mostrar el sidebar cuando se le da clic al botón Menú en pantallas pequeñas */
-.sidebar.open {
-    display: flex !important;
+    color: var(--textoMutado);
 }

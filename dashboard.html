@@ -14,58 +14,73 @@
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body class="dashboard-layout">
- 
-    <!-- TOPBAR SUPERIOR CON BOTÓN DE MENÚ -->
+
+    <!-- Capa oscura de fondo al abrir el menú lateral -->
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+
+    <!-- TOPBAR SUPERIOR -->
     <header class="topbar">
-        <button id="btn-toggle-menu" class="btn-menu">
+        <button id="btn-toggle-menu" class="btn-menu" aria-label="Abrir menú">
             <i data-lucide="menu"></i>
-            <span>Menú</span>
         </button>
-        <h2 class="brand-title">Glow Diary ✨</h2>
+        <div class="brand-title">
+            <i data-lucide="flower" class="brand-icon"></i>
+            <h2>Dashboard</h2>
+        </div>
+        <div class="topbar-user-icon">
+            <i data-lucide="flower"></i>
+        </div>
     </header>
 
-    <!-- BARRA LATERAL (SIDEBAR) -->
+    <!-- BARRA LATERAL (SIDEBAR DESPLEGABLE) -->
     <aside id="sidebar-menu" class="sidebar">
-        <div class="sidebar-top">
+        <div class="sidebar-header">
             <div class="brand-logo">
-                <i data-lucide="flower"></i>
+                <div class="logo-circle">
+                    <i data-lucide="flower"></i>
+                </div>
                 <div>
                     <h2>Mi Rutina</h2>
-                    <span class="role-text">Beauty Manager</span>
+                    <span class="role-text">BEAUTY MANAGER</span>
                 </div>
             </div>
-            <nav class="sidebar-menu">
-                <!-- Atributos data-target agregados para vincular con JS -->
-                <button class="menu-item activate" type="button" data-target="sec-dash">
-                    <i data-lucide="layout-dashboard"></i>Dashboard
-                </button>
-                <button class="menu-item" type="button" data-target="sec-rutinas">
-                    <i data-lucide="sparkles"></i> Rutinas
-                </button>
-                <button class="menu-item" type="button" data-target="sec-perfil">
-                    <i data-lucide="user"></i> Perfil
-                </button>
-                <button class="menu-item" type="button" data-target="sec-notas">
-                    <i data-lucide="notebook-pen"></i> Notas
-                </button>
-            </nav>
+            <button id="btn-close-sidebar" class="btn-close-sidebar" aria-label="Cerrar menú">
+                <i data-lucide="x"></i>
+            </button>
         </div>
+
+        <nav class="sidebar-menu">
+            <button class="menu-item activate" type="button" data-target="sec-dash">
+                <i data-lucide="layout-dashboard"></i> Dashboard
+            </button>
+            <button class="menu-item" type="button" data-target="sec-rutinas">
+                <i data-lucide="sparkles"></i> Rutinas
+            </button>
+            <button class="menu-item" type="button" data-target="sec-notas">
+                <i data-lucide="notebook-pen"></i> Notas
+            </button>
+            <button class="menu-item" type="button" data-target="sec-perfil">
+                <i data-lucide="user"></i> Perfil
+            </button>
+        </nav>
 
         <div class="sidebar-footer">
             <div class="user-profile">
-                <i data-lucide="flower"></i>
+                <div class="user-avatar">
+                    <i data-lucide="flower"></i>
+                </div>
                 <div class="user-info">
-                    <span class="user-name">NombreUsuaria</span>
+                    <span class="user-name">Nombre</span>
                     <span class="user-email">email@gmail.com</span>
                 </div>
             </div>
-            <button id="btn-logout" class="logout-icon-btn">
+            <button id="btn-logout" class="logout-icon-btn" title="Cerrar sesión">
                 <i data-lucide="log-out"></i>
             </button>
         </div>
     </aside>
 
-    <!-- CONTENIDO PRINCIPAL SECCIONADO -->
+    <!-- CONTENIDO PRINCIPAL -->
     <main class="main-content">
 
         <!-- 1. SECCIÓN DASHBOARD -->
@@ -75,7 +90,7 @@
                     <i data-lucide="flower"></i>
                 </div>
                 <div>
-                    <p class="greeting-sub">Buenos días</p>
+                    <p class="greeting-sub">Buenos días,</p>
                     <h1 class="greeting-title">Nombre ✨</h1>
                 </div>
             </header>
@@ -108,7 +123,7 @@
             <div class="section-block">
                 <div class="section-header">
                     <h2>Mis rutinas</h2>
-                    <a href="#" class="view-all">Ver todas <i data-lucide="chevron-right" class="inline-icon"></i></a>
+                    <a href="#" class="view-all" id="link-ver-todas">Ver todas <i data-lucide="chevron-right" class="inline-icon"></i></a>
                 </div>
                 <div class="rutinas-grid">
                     <div class="rutina-item card-pink">
@@ -125,11 +140,25 @@
                             <p>4 productos</p>
                         </div>
                     </div>
+                    <div class="rutina-item card-cyan">
+                        <span class="rutina-emoji">💆‍♀️</span>
+                        <div class="rutina-info">
+                            <h3>Cuidado Capilar</h3>
+                            <p>4 productos</p>
+                        </div>
+                    </div>
+                    <div class="rutina-item card-yellow">
+                        <span class="rutina-emoji">✨</span>
+                        <div class="rutina-info">
+                            <h3>Cuerpo</h3>
+                            <p>2 productos</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- 2. SECCIÓN RUTINAS (Página individual) -->
+        <!-- 2. SECCIÓN RUTINAS -->
         <section id="sec-rutinas" class="seccion-pantalla">
             <div class="section-header">
                 <h2>Todas mis Rutinas 🌸</h2>
@@ -166,25 +195,15 @@
             </div>
         </section>
 
-        <!-- 3. SECCIÓN PERFIL -->
-        <section id="sec-perfil" class="seccion-pantalla">
-            <div class="section-header">
-                <h2>Mi Perfil 👤</h2>
-            </div>
-            <p>Configuración de cuenta, objetivos de piel y preferencias.</p>
-        </section>
-
-        <!-- 4. SECCIÓN NOTAS (Página individual) -->
+        <!-- 3. SECCIÓN NOTAS -->
         <section id="sec-notas" class="seccion-pantalla">
             <div class="section-header">
-                <h2>📄 Mis Notas y Apuntes</h2>
+                <h2>📄 Mis Notas</h2>
             </div>
-
             <div class="input-note-container">
                 <input type="text" placeholder="Escribe una nota, recordatorio o idea..." class="note-input">
                 <button class="btn-add-note"><i data-lucide="plus"></i></button>
             </div>
-
             <div class="notes-grid">
                 <div class="note-item">
                     <p class="note-text">Probar el nuevo sérum de niacinamida esta semana</p>
@@ -201,9 +220,16 @@
             </div>
         </section>
 
+        <!-- 4. SECCIÓN PERFIL -->
+        <section id="sec-perfil" class="seccion-pantalla">
+            <div class="section-header">
+                <h2>Mi Perfil 👤</h2>
+            </div>
+            <p>Ajustes de cuenta y tipo de piel.</p>
+        </section>
+
     </main>
 
-    <!-- JS de control -->
     <script type="module" src="./js/dashboard.js"></script>
 </body>
 </html>
