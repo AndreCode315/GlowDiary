@@ -388,3 +388,17 @@
     font-size: 0.75rem;
     opacity: 0.5;
 } 
+
+/* Control de visibilidad de secciones */
+.seccion-pantalla {
+    display: none;
+}
+
+.seccion-pantalla.active {
+    display: block;
+}
+
+/* Mostrar el sidebar cuando se le da clic al botón Menú en pantallas pequeñas */
+.sidebar.open {
+    display: flex !important;
+}

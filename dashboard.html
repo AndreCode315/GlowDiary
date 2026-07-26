@@ -1,15 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GlowDiary - Mi Tocador</title>
 
-    <!--Llamamos al archivo externo con los estilos-->
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/layout.css">
 
-    <!-- Fuente elegante de Google Fonts para el toque estético -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
@@ -17,8 +15,17 @@
 </head>
 <body class="dashboard-layout">
  
-    <!--Barra lateral-->
-    <aside class="sidebar">
+    <!-- TOPBAR SUPERIOR CON BOTÓN DE MENÚ -->
+    <header class="topbar">
+        <button id="btn-toggle-menu" class="btn-menu">
+            <i data-lucide="menu"></i>
+            <span>Menú</span>
+        </button>
+        <h2 class="brand-title">Glow Diary ✨</h2>
+    </header>
+
+    <!-- BARRA LATERAL (SIDEBAR) -->
+    <aside id="sidebar-menu" class="sidebar">
         <div class="sidebar-top">
             <div class="brand-logo">
                 <i data-lucide="flower"></i>
@@ -28,17 +35,18 @@
                 </div>
             </div>
             <nav class="sidebar-menu">
-                <button class="menu-item activate" type="button">
+                <!-- Atributos data-target agregados para vincular con JS -->
+                <button class="menu-item activate" type="button" data-target="sec-dash">
                     <i data-lucide="layout-dashboard"></i>Dashboard
                 </button>
-                <button class="menu-item" type="button">
+                <button class="menu-item" type="button" data-target="sec-rutinas">
                     <i data-lucide="sparkles"></i> Rutinas
                 </button>
-                <button class="menu-item" type="button">
-                    <i data-lucide="sparkles"></i> Perfil
+                <button class="menu-item" type="button" data-target="sec-perfil">
+                    <i data-lucide="user"></i> Perfil
                 </button>
-                <button class="menu-item" type="button">
-                    <i data-lucide="sparkles"></i> Notas
+                <button class="menu-item" type="button" data-target="sec-notas">
+                    <i data-lucide="notebook-pen"></i> Notas
                 </button>
             </nav>
         </div>
@@ -57,23 +65,23 @@
         </div>
     </aside>
 
-    <!--Contenido Principal-->
+    <!-- CONTENIDO PRINCIPAL SECCIONADO -->
     <main class="main-content">
 
-        <section id="dash" class="section-dash active">
-
+        <!-- 1. SECCIÓN DASHBOARD -->
+        <section id="sec-dash" class="seccion-pantalla active">
             <header class="welcome-header">
                 <div class="welcome-badge">
                     <i data-lucide="flower"></i>
                 </div>
                 <div>
-                    <p class="greeting-sub">Buenos dias</p>
+                    <p class="greeting-sub">Buenos días</p>
                     <h1 class="greeting-title">Nombre ✨</h1>
                 </div>
             </header>
 
-            <!--Bloque de estadisticas-->
-            <section class="stats-grid">
+            <!-- Bloque de estadísticas -->
+            <div class="stats-grid">
                 <div class="stat-card">
                     <span class="stat-emoji">📋</span>
                     <span class="stat-number">4</span>
@@ -94,10 +102,10 @@
                     <span class="stat-number">14</span>
                     <span class="stat-label">Días activa</span>
                 </div>
-            </section>
+            </div>
 
-            <!--Seccion de Rutinas-->
-            <section class="section-block">
+            <!-- Resumen de Rutinas -->
+            <div class="section-block">
                 <div class="section-header">
                     <h2>Mis rutinas</h2>
                     <a href="#" class="view-all">Ver todas <i data-lucide="chevron-right" class="inline-icon"></i></a>
@@ -117,55 +125,85 @@
                             <p>4 productos</p>
                         </div>
                     </div>
-                    <div class="rutina-item card-cyan">
-                        <span class="rutina-emoji">💆‍♀️</span>
-                        <div class="rutina-info">
-                            <h3>Cuidado Capilar</h3>
-                            <p>4 productos</p>
-                        </div>
-                    </div>
-                    <div class="rutina-item card-yellow">
-                        <span class="rutina-emoji">✨</span>
-                        <div class="rutina-info">
-                            <h3>Cuerpo</h3>
-                            <p>2 productos</p>
-                        </div>  
-                    </div>
                 </div>
-            </section>
-
-            <!--Seccion de Notas-->
-            <section class="section-block">
-                <div class="section-header">
-                    <h2>📄 Notas</h2>
-                </div>
-
-                <div class="input-note-container">
-                    <input type="text" placeholder="Escribe una nota, recordatorio o idea..." class="note-input">
-                    <button class="btn-add-note"><i data-lucide="plus"></i></button>
-                </div>
-
-                <div class="notes-grid">
-                    <div class="note-item">
-                        <p class="note-text">Probar el nuevo serum de niacinamida esta semana</p>
-                        <span class="note-date">13 jul 2025</span>
-                    </div>
-                    <div class="note-item card-cyan">
-                        <p class="note-text">Acordarme de aplicar la mascarilla los miércoles y domingos.</p>
-                        <span class="note-date">9 jul 2025</span>
-                    </div>
-                    <div class="note-item card-blue">
-                        <p class="note-text">Mi piel mejoró mucho desde que incorporé el SPF todos los días ✨</p>
-                        <span class="note-date">7 jul 2025</span>
-                    </div>
-                </div>
-            </section>
+            </div>
         </section>
-        
 
-        <script type="module" src="./js/dashboard.js"></script>
-        
-        <script>setTimeout(() => { lucide.createIcons(); }, 100);</script>
+        <!-- 2. SECCIÓN RUTINAS (Página individual) -->
+        <section id="sec-rutinas" class="seccion-pantalla">
+            <div class="section-header">
+                <h2>Todas mis Rutinas 🌸</h2>
+            </div>
+            <div class="rutinas-grid">
+                <div class="rutina-item card-pink">
+                    <span class="rutina-emoji">☀️</span>
+                    <div class="rutina-info">
+                        <h3>Skincare Mañana</h3>
+                        <p>4 productos</p>
+                    </div>
+                </div>
+                <div class="rutina-item card-purple">
+                    <span class="rutina-emoji">🌙</span>
+                    <div class="rutina-info">
+                        <h3>Skincare Noche</h3>
+                        <p>4 productos</p>
+                    </div>
+                </div>
+                <div class="rutina-item card-cyan">
+                    <span class="rutina-emoji">💆‍♀️</span>
+                    <div class="rutina-info">
+                        <h3>Cuidado Capilar</h3>
+                        <p>4 productos</p>
+                    </div>
+                </div>
+                <div class="rutina-item card-yellow">
+                    <span class="rutina-emoji">✨</span>
+                    <div class="rutina-info">
+                        <h3>Cuerpo</h3>
+                        <p>2 productos</p>
+                    </div>  
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. SECCIÓN PERFIL -->
+        <section id="sec-perfil" class="seccion-pantalla">
+            <div class="section-header">
+                <h2>Mi Perfil 👤</h2>
+            </div>
+            <p>Configuración de cuenta, objetivos de piel y preferencias.</p>
+        </section>
+
+        <!-- 4. SECCIÓN NOTAS (Página individual) -->
+        <section id="sec-notas" class="seccion-pantalla">
+            <div class="section-header">
+                <h2>📄 Mis Notas y Apuntes</h2>
+            </div>
+
+            <div class="input-note-container">
+                <input type="text" placeholder="Escribe una nota, recordatorio o idea..." class="note-input">
+                <button class="btn-add-note"><i data-lucide="plus"></i></button>
+            </div>
+
+            <div class="notes-grid">
+                <div class="note-item">
+                    <p class="note-text">Probar el nuevo sérum de niacinamida esta semana</p>
+                    <span class="note-date">13 jul 2025</span>
+                </div>
+                <div class="note-item card-cyan">
+                    <p class="note-text">Acordarme de aplicar la mascarilla los miércoles y domingos.</p>
+                    <span class="note-date">9 jul 2025</span>
+                </div>
+                <div class="note-item card-blue">
+                    <p class="note-text">Mi piel mejoró mucho desde que incorporé el SPF todos los días ✨</p>
+                    <span class="note-date">7 jul 2025</span>
+                </div>
+            </div>
+        </section>
+
     </main>
+
+    <!-- JS de control -->
+    <script type="module" src="./js/dashboard.js"></script>
 </body>
 </html>
