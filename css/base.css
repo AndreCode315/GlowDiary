@@ -1,13 +1,24 @@
-/* Variables globales de colores*/
+/* Variables globales de colores */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Poppins:wght@300;400;500;600&display=swap');
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Poppins:wght@300;400;500&display=swap');
-
-:root{
-    --fondoPantalla: #f3b1c5;   /* Lavanda/Rosa ultra suave */
-    --blancoTarjeta: #f8d7e7;   /* Blanco puro para el contenedor */
-    --rosaPrincipal: #DB7093;   /* Rosa viejo para botones y títulos */
-    --rosaSuave: #fb9ad4;       /* Rosa pastel para bordes o detalles */
-    --textoOscuro: #4A4A4A;     /* Gris ceniza para los textos principales */
-    --textoMutado: #8C8C8C;
+:root {
+    --fondoPantalla: #f5c9d6;   /* Rosa suave */
+    --blancoTarjeta: #ffffff;   /* Blanco puro para mantener las tarjetas legibles */
+    --rosaPrincipal: #DB7093;   /* Rosa viejo para acentos y títulos */
+    --rosaSuave: #f6a5b8;       /* Rosa pastel claro para fondos secundarios y hover */
+    --textoOscuro: #333333;     /* Texto principal oscuro para buen contraste */
+    --textoMutado: #8C8C8C;     /* Textos secundarios / fechas */
+    --card-border: #f4e6e9;     /* Borde sutil para tarjetas y topbar */
 }
 
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', 'Segoe UI', sans-serif;
+    background-color: #fcf8f9;
+    color: var(--textoOscuro);
+}
