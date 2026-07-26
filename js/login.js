@@ -16,7 +16,7 @@ verificarSesionActiva();
 // CONTROL DEL FORMULARIO DE LOGIN
 // ==========================================
 const form = document.querySelector('.login-form');
-
+ 
 form.addEventListener('submit', async (e) => {
     e.preventDefault(); // Evita que la página se recargue
 

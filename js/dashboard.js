@@ -69,7 +69,7 @@ async function gestionarLogout() {
         alert("Error al cerrar sesión");
     }
 }
-
+ 
 // Escuchadores de eventos (Listeners)
 btnLogout.addEventListener('click', gestionarLogout);
 
