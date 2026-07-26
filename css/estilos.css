@@ -4,13 +4,14 @@ body {
     font-family: 'Poppins', sans-serif;
     background-color: var(--fondoPantalla);
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    flex-direction: column; /* Apilado vertical para controlar bien los márgenes */
+    align-items: center;    /* Centra horizontalmente */
+    min-height: 100vh;
     box-sizing: border-box;
     color: var(--textoOscuro);
 }
 
+/* Tarjeta de Login y Registro */
 .login-container,
 .auth-card {
     background-color: var(--blancoTarjeta);
@@ -21,7 +22,7 @@ body {
     max-width: 400px;
     text-align: center;
     box-sizing: border-box;
-    margin: auto; /* Centra la tarjeta perfectamente */
+    margin: auto 0; /* Centra verticalmente cuando cabe, y respeta el padding superior cuando no */
 }
 
 /* Título de la Aplicación */
