@@ -22,8 +22,7 @@ body {
 }
 
 /* Título de la Aplicación */
-.login-header h1,
-.auth-header h2 {
+.login-header h1 {
     font-family: 'Playfair Display', serif;
     font-size: 2.5rem;
     color: var(--rosaPrincipal);
@@ -92,7 +91,7 @@ body {
     background-color: #C75B7E;
 }
 
-/* Footer del Login (Enlaces) */
+/* Footer(Enlaces) */
 .login-footer,
 .auth-footer {
     margin-top: 25px;
@@ -113,9 +112,7 @@ body {
 }
 
 
-/*Para la tarjeta de registro*/
-
-
+/*Disenio de los input */
 
 .input-group {
     display: flex;
