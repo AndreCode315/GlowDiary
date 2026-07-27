@@ -21,7 +21,7 @@
     width: 100%;           /* Ocupa todo el ancho horizontal */
     height: 12%;          /* Altura fija de la barra */
     background-color: var(--fondoPantalla);
-    border-bottom: 1px solid var(--card-border); /* Línea divisoria inferior sutil */
+    border-bottom: 1.5px solid var(--card-border); /* Línea divisoria inferior sutil */
     
     /* Flexbox para alinear los 3 elementos: [Botón Menú] [Título/Logo] [Icono Usuario] */
     display: flex;
@@ -150,7 +150,7 @@
 /* Círculo oscuro con el icono de la marca */
 .logo-circle {
     background-color: var(--rosaSuave);
-    color: var(--fondoPantalla);
+    color: var(--rosaPrincipal);
     width: 36px;
     height: 36px;
     border-radius: 50%;
@@ -350,7 +350,7 @@
 }
 
 .stat-card {
-    border: 1px solid var(--rosaPrincipal);
+    border: 1.25px solid var(--rosaPrincipal);
     border-radius: 18px;
     padding: 1.25rem 1rem;
     display: flex;
@@ -465,7 +465,7 @@
 /* Campo para escribir notas */
 .note-input {
     flex: 1; /* Estira el campo para ocupar todo el espacio libre horizontal */
-    border: 1px solid var(--card-border);
+    border: 1.25px solid var(--card-border);
     border-radius: 14px;
     padding: 0.85rem 1.25rem;
     font-size: 0.9rem;
@@ -512,8 +512,8 @@
     flex-direction: column;
     justify-content: space-between; /* Mantiene el texto arriba y la fecha abajo */
     min-height: 120px;
-    background-color: #ffffff;
-    border: 1px solid var(--card-border);
+    background-color: var(--card-border);
+    border: 1px solid var(--rosaSuave);
 }
 
 .note-text {
