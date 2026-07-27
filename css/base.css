@@ -3,7 +3,7 @@
 
 :root {
     --fondoPantalla: #f5c9d6;   /* Rosa suave */
-    --blancoTarjeta: #ffffff;   /* Blanco puro para mantener las tarjetas legibles */
+    --blancoTarjeta: #f8e0ea;   /* Blanco puro para mantener las tarjetas legibles */
     --rosaPrincipal: #DB7093;   /* Rosa viejo para acentos y títulos */
     --rosaSuave: #f6a5b8;       /* Rosa pastel claro para fondos secundarios y hover */
     --textoOscuro: #333333;     /* Texto principal oscuro para buen contraste */

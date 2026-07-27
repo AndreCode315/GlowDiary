@@ -471,12 +471,12 @@
     font-size: 0.9rem;
     outline: none; /* Elimina el borde azul por defecto que colocan los navegadores */
     transition: border-color 0.2s;
-    background-color: var(--rosaSuave);
+    background-color: var(--blancoTarjeta);
 }
 
 /* Resalta el borde al hacer clic dentro del input */
 .note-input:focus {
-    border-color: var(--rosaPrincipal);
+    border-color: var(--rosaSuave);
 }
 
 /* Botón cuadrado para añadir notas con el icono '+' */
@@ -512,7 +512,7 @@
     flex-direction: column;
     justify-content: space-between; /* Mantiene el texto arriba y la fecha abajo */
     min-height: 120px;
-    background-color: var(--card-border);
+    background-color: var(--blancoTarjeta);
     border: 1px solid var(--rosaSuave);
 }
 
