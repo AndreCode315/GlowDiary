@@ -18,7 +18,7 @@
     position: fixed;        /* Queda fija en la pantalla incluso al hacer scroll */
     top: 0;
     left: 0;
-    width: 95%;           /* Ocupa todo el ancho horizontal */
+    width: 100%;           /* Ocupa todo el ancho horizontal */
     height: 12%;          /* Altura fija de la barra */
     background-color: var(--fondoPantalla);
     border-bottom: 1px solid var(--card-border); /* Línea divisoria inferior sutil */
@@ -122,9 +122,10 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between; /* Empuja el Header arriba y el Footer abajo */
-    padding: 1.5rem 1.25rem;
+    padding: 1.25rem 1rem 1rem 1rem;
     transition: left 0.3s ease;     /* Transición suave para el efecto de deslizado */
     z-index: 200;                   /* Mantiene el panel en la capa superior absoluta */
+    overflow-y: auto;               /* Permite scroll interno si la pantalla es muy pequeña */
 }
 
 /* Clase activada por JavaScript al hacer clic en el botón menú */
@@ -223,8 +224,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-top: 1rem;
-    border-top: 1px solid var(--fondoPantalla); /* Línea divisoria horizontal arriba del footer */
+    padding-top: 0.85rem;
+    margin-top: auto; /* Empuja el footer al final sin salirse */
+    border-top: 1px solid var(--card-border, #f0e6e8);  /* Línea divisoria horizontal arriba del footer */
+    min-height: 50px;
 }
 
 .user-profile {
@@ -247,16 +250,23 @@
 .user-info {
     display: flex;
     flex-direction: column;
+    overflow: hidden; /* Evita que correos o nombres largos rompan el ancho */
 }
 
 .user-name {
     font-size: 0.85rem;
     font-weight: 600;
+    white-space: nowrap;
+    text-overflow: ellipsis; /* Si el nombre es muy largo coloca "..." */
+    overflow: hidden;
 }
 
 .user-email {
     font-size: 0.7rem;
     color: var(--textoMutado);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 /* Botón del icono de cerrar sesión */
@@ -435,11 +445,11 @@
 }
 
 /* VARIACIONES DE COLORES PASTEL PARA TARJETAS */
-.card-pink   { background-color: #fff0f3; border-color: #ffe3e8; }
-.card-purple { background-color: #f7f0fa; border-color: #f0e1f7; }
-.card-cyan   { background-color: #eefbfb; border-color: #d8f5f5; }
-.card-yellow { background-color: #fffdf0; border-color: #fef8cf; }
-.card-blue   { background-color: #edf4fe; border-color: #dbe7fb; }
+.card-pink   { background-color: #fadfe5; border-color: #ffe3e8; }
+.card-purple { background-color: #f0ddf9; border-color: #f0e1f7; }
+.card-cyan   { background-color: #d9f8f8; border-color: #d8f5f5; }
+.card-yellow { background-color: #fbf7df; border-color: #fef8cf; }
+.card-blue   { background-color: #dde7f5; border-color: #dbe7fb; }
 
 /* ==========================================
    6. SECCIÓN NOTAS Y ELEMENTOS FORMULARIO
@@ -461,7 +471,7 @@
     font-size: 0.9rem;
     outline: none; /* Elimina el borde azul por defecto que colocan los navegadores */
     transition: border-color 0.2s;
-    background-color: #ffffff;
+    background-color: var(--rosaSuave);
 }
 
 /* Resalta el borde al hacer clic dentro del input */
